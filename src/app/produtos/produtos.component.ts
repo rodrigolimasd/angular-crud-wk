@@ -31,11 +31,18 @@ export class ProdutosComponent implements OnInit {
   }
 
   handleGetProdutos(result: any) {
+    console.log(result)
     this.produtos = result
   }
 
   edit(produto: any) {
-    //TODO
+      this.produtosService.get(produto).subscribe({
+        next: (result) => {
+            this.produto = {...result} 
+            this.produto.isEdit = true 
+            },
+        error: () => this.handlerErro.bind(this)
+    })
   }
 
   delete(produto: any) {

@@ -33,10 +33,18 @@ export class ProdutosService {
   }
 
   update(produto: any): Observable<any> {
-    return this.httpClient.put<any>(this.urlApi, JSON.stringify(produto), this.httpOptions)
+    return this.httpClient.put<any>(this.urlApi+ '/' + produto._id, JSON.stringify(produto), this.httpOptions)
     .pipe(
       catchError(this.handleError)
     )
+  }
+
+  get(produto: any) {
+    return this.httpClient.get<any>(this.urlApi + '/' + produto._id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
   handleError(ex: HttpErrorResponse) {
