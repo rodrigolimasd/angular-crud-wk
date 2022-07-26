@@ -1,1 +1,35 @@
-<p>produtos works!</p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Produtos</li>
+    </ol>
+</nav>
+<div class="container">
+    
+    <div class="card">
+        <h5 class="card-header">Produtos</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead> 
+                    <tr>
+                        <th>Produtos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of produtos">
+                        <td>{{p.descricao}}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" (click)="edit(p)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm ml-1" (click)="delete(p)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

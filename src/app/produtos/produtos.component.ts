@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutosComponent implements OnInit {
 
+  produtos: any = [{descricao:"teste 1"},{descricao:"teste 2"}]
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  edit(produto: any) {
+
+  }
+
+  delete(produto: any) {
+    
   }
 
 }
