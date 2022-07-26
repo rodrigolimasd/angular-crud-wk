@@ -31,7 +31,6 @@ export class ProdutosComponent implements OnInit {
   }
 
   handleGetProdutos(result: any) {
-    console.log(result)
     this.produtos = result
   }
 
@@ -46,7 +45,11 @@ export class ProdutosComponent implements OnInit {
   }
 
   delete(produto: any) {
-    //TODO
+    this.produtosService.delete(produto)
+      .subscribe({
+        next: () => this.getProdutos(),
+        error: () => this.handlerErro.bind(this)
+      })
   }
   
   save(form: NgForm) {

@@ -47,6 +47,14 @@ export class ProdutosService {
       )
   }
 
+  delete(produto: any) {
+    return this.httpClient.delete<any>(this.urlApi + '/' + produto._id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
   handleError(ex: HttpErrorResponse) {
     console.log('erro', ex.error);
     return throwError(() => new Error(ex.error))
