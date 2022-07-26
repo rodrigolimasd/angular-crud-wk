@@ -4,6 +4,40 @@
     </ol>
 </nav>
 <div class="container">
+
+    <div class="card add-produto">      
+        <h5 class="card-header" *ngIf="produto.isEdit">Atualizar Produto</h5>  
+        <h5 class="card-header" *ngIf="!produto.isEdit">Adicionar Produto</h5>       
+        <div class="card-body">
+          <form id="add-form" (ngSubmit)="f.form.valid && save(f)" #f="ngForm" novalidate>      
+            <div class="alert alert-danger" role="alert" [hidden]="!isError">
+              {{msgErro}}
+            </div>    
+  
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" [(ngModel)]="produto.descricao" id="descricao" name="descricao" #descricao="ngModel" required class="form-control" 
+                    [ngClass]="{ 'is-invalid': f.submitted && descricao.invalid }" placeholder="Digite a descrição">
+                    <div *ngIf="f.submitted && descricao.invalid" class="invalid-feedback">
+                        <div *ngIf="descricao.errors?.['required']">A Descrição é obrigatória</div>
+                    </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col">
+                <div class="form-group">         
+                  <button type="submit" class="btn btn-primary btn-add-produto" style="margin-right: 5px;">Salvar</button>
+                  <button type="reset" class="btn btn-secondary btn-add-produto" (click)="cleanForm(f)">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     
     <div class="card">
         <h5 class="card-header">Produtos</h5>
